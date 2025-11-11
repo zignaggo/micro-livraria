@@ -1,5 +1,6 @@
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
+const { CART_HOST } = require('./host');
 
 const packageDefinition = protoLoader.loadSync('proto/cart.proto', {
     keepCase: true,
@@ -9,7 +10,7 @@ const packageDefinition = protoLoader.loadSync('proto/cart.proto', {
 });
 
 const CartService = grpc.loadPackageDefinition(packageDefinition).CartService;
-const client = new CartService('127.0.0.1:3003', grpc.credentials.createInsecure());
+const client = new CartService(`${CART_HOST}:3003`, grpc.credentials.createInsecure());
 
 module.exports = client;
 

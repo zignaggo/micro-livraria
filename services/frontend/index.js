@@ -1,4 +1,5 @@
 const USER_ID = 'user-1';
+const HOST = window?.__env__?.HOST || '127.0.0.1';
 
 function newBook(book) {
     const div = document.createElement('div');
@@ -44,7 +45,7 @@ function newBook(book) {
 }
 
 function calculateShipping(id, cep) {
-    fetch('http://localhost:3000/shipping/' + cep)
+    fetch(`${HOST}:3000/shipping/${cep}`)
         .then((data) => {
             if (data.ok) {
                 return data.json();
@@ -61,7 +62,7 @@ function calculateShipping(id, cep) {
 }
 
 function addToCart(productId, productName, productPrice, quantity = 1) {
-    fetch(`http://localhost:3000/cart/${USER_ID}/items`, {
+    fetch(`http://${HOST}:3000/cart/${USER_ID}/items`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ function addToCart(productId, productName, productPrice, quantity = 1) {
 }
 
 function getCart() {
-    return fetch(`http://localhost:3000/cart/${USER_ID}`)
+    return fetch(`http://${HOST}:3000/cart/${USER_ID}`)
         .then((data) => {
             if (data.ok) {
                 return data.json();
@@ -100,7 +101,7 @@ function getCart() {
 }
 
 function removeFromCart(productId) {
-    fetch(`http://localhost:3000/cart/${USER_ID}/items/${productId}`, {
+    fetch(`http://${HOST}:3000/cart/${USER_ID}/items/${productId}`, {
         method: 'DELETE',
     })
         .then((data) => {
@@ -120,7 +121,7 @@ function removeFromCart(productId) {
 }
 
 function updateItemQuantity(productId, quantity) {
-    fetch(`http://localhost:3000/cart/${USER_ID}/items/${productId}`, {
+    fetch(`http://${HOST}:3000/cart/${USER_ID}/items/${productId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -146,7 +147,7 @@ function updateItemQuantity(productId, quantity) {
 }
 
 function clearCart() {
-    fetch(`http://localhost:3000/cart/${USER_ID}`, {
+    fetch(`http://${HOST}:3000/cart/${USER_ID}`, {
         method: 'DELETE',
     })
         .then((data) => {
@@ -272,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    fetch('http://localhost:3000/products')
+    fetch(`http://${HOST}:3000/products`)
         .then((data) => {
             if (data.ok) {
                 return data.json();

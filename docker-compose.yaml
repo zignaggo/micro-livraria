@@ -1,0 +1,44 @@
+services:
+  frontend:
+    image: micro-livraria/frontend
+    ports:
+      - 5000:5000
+    depends_on:
+      - controller
+    networks:
+      - micro-livraria
+  controller:
+    image: micro-livraria/controller
+    ports:
+      - 3000:3000
+    environment:
+      - SHIPPING_HOST=shipping
+      - INVENTORY_HOST=inventory
+      - CART_HOST=cart
+    depends_on:
+      - shipping
+      - inventory
+      - cart
+    networks:
+      - micro-livraria
+  shipping:
+    image: micro-livraria/shipping
+    ports:
+      - 3001:3001
+    networks:
+      - micro-livraria
+  inventory:
+    image: micro-livraria/inventory
+    ports:
+      - 3002:3002
+    networks:
+      - micro-livraria
+  cart:
+    image: micro-livraria/cart
+    ports:
+      - 3003:3003
+    networks:
+      - micro-livraria
+networks:
+  micro-livraria:
+    driver: bridge

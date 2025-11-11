@@ -14,7 +14,8 @@
         "exec-controller": "node services/controller/index.js",
         "exec-shipping": "node services/shipping/index.js",
         "exec-inventory": "node services/inventory/index.js",
-        "exec-cart": "node services/cart/index.js"
+        "exec-cart": "node services/cart/index.js",
+        "docker:build": "bash scripts/build.sh"
     },
     "repository": {
         "type": "git",
