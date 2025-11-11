@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+service CartService {
+    rpc AddItem(AddItemRequest) returns (CartResponse) {}
+    rpc RemoveItem(RemoveItemRequest) returns (CartResponse) {}
+    rpc GetCart(GetCartRequest) returns (CartResponse) {}
+    rpc ClearCart(ClearCartRequest) returns (CartResponse) {}
+    rpc UpdateItemQuantity(UpdateItemQuantityRequest) returns (CartResponse) {}
+}
+
+message AddItemRequest {
+    string userId = 1;
+    int32 productId = 2;
+    string productName = 3;
+    float productPrice = 4;
+    int32 quantity = 5;
+}
+
+message RemoveItemRequest {
+    string userId = 1;
+    int32 productId = 2;
+}
+
+message GetCartRequest {
+    string userId = 1;
+}
+
+message ClearCartRequest {
+    string userId = 1;
+}
+
+message UpdateItemQuantityRequest {
+    string userId = 1;
+    int32 productId = 2;
+    int32 quantity = 3;
+}
+
+message CartItem {
+    int32 productId = 1;
+    string productName = 2;
+    float productPrice = 3;
+    int32 quantity = 4;
+    float subtotal = 5;
+}
+
+message CartResponse {
+    string userId = 1;
+    repeated CartItem items = 2;
+    float total = 3;
+    int32 itemCount = 4;
+}
+

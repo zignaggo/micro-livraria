@@ -13,8 +13,23 @@
     <body>
         <section class="hero is-info is-small">
             <div class="hero-body">
-                <div class="container has-text-centered">
-                    <p class="title">Micro Livraria</p>
+                <div class="container">
+                    <div class="level">
+                        <div class="level-item">
+                            <p class="title">Micro Livraria</p>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <button class="button is-light" id="cart-button">
+                                    <span class="icon">
+                                        <i>🛒</i>
+                                    </span>
+                                    <span>Carrinho</span>
+                                    <span class="tag is-success" id="cart-count">0</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -24,6 +39,39 @@
         <section class="container">
             <div class="columns books"></div>
         </section>
+
+        <!-- Modal do Carrinho -->
+        <div id="cart-modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Meu Carrinho</p>
+                    <button class="delete" aria-label="close" id="close-cart"></button>
+                </header>
+                <section class="modal-card-body" id="cart-items">
+                    <p class="has-text-centered">Carrinho vazio</p>
+                </section>
+                <footer class="modal-card-foot">
+                    <div style="width: 100%;">
+                        <div class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <strong>Total: R$ <span id="cart-total">0.00</span></strong>
+                                </div>
+                            </div>
+                            <div class="level-right">
+                                <div class="level-item">
+                                    <button class="button is-danger" id="clear-cart">Limpar Carrinho</button>
+                                </div>
+                                <div class="level-item">
+                                    <button class="button is-success" id="checkout-cart">Finalizar Compra</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
 
         <footer class="footer has-text-centered">Feito com ❤️ na UFMG</footer>
 
